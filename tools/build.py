@@ -36,7 +36,8 @@ def main():
         sys.exit("pandoc is required: brew install pandoc")
     DIST.mkdir(exist_ok=True)
     meta = str(BOOK / "metadata.yaml")
-    common = ["pandoc", meta, *chapters(), "--from", "markdown+east_asian_line_breaks", "--toc", "--toc-depth=2", "--css", "tools/book.css"]
+    common = ["pandoc", meta, *chapters(), "--from", "markdown+east_asian_line_breaks", "--toc", "--toc-depth=2",
+              "--lua-filter", "tools/book.lua", "--css", "tools/book.css"]
 
     epub = DIST / f"{NAME}.epub"
     run([*common, "--to", "epub3", "--split-level=1", "--output", str(epub)])
