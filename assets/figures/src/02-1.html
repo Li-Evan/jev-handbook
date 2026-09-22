@@ -1,0 +1,41 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .panel { background: var(--card); border: 2px solid var(--rule); border-radius: 16px; padding: 18px 22px; }
+  .panel + .panel { margin-top: 18px; }
+  .ph { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .ph .card-title span { font-weight: 400; color: var(--muted); font-size: 22px; margin-left: 10px; }
+  .bars { font-size: 23px; }
+</style></head><body>
+<div class="panel">
+  <div class="ph"><div class="card-title">Choice<span>从选项里挑一个，概率加起来是 1</span></div></div>
+  <div class="small muted" style="margin-bottom:10px">鞋店这条消息该交给哪个组</div>
+  <div class="bars">
+    <span class="lab b">退换货</span><div class="track"><i class="jev" style="width:61%"></i></div><span class="val accent">0.61</span>
+    <span class="lab">账单</span><div class="track"><i style="width:35%"></i></div><span class="val">0.35</span>
+    <span class="lab">物流</span><div class="track"><i style="width:4%"></i></div><span class="val">0.04</span>
+  </div>
+  <div class="small mt-s">choice = 退换货　·　置信度 <span class="num">0.42</span></div>
+</div>
+<div class="panel">
+  <div class="ph"><div class="card-title">Score<span>在有顺序的几档上定位</span></div></div>
+  <div class="small muted" style="margin-bottom:10px">导出按钮让 Safari 崩溃，Chrome 正常，这个 bug 有多严重</div>
+  <div class="bars">
+    <span class="lab">0 只影响外观</span><div class="track"><i style="width:0%"></i></div><span class="val">0.00</span>
+    <span class="lab">1 坏了但有替代办法</span><div class="track"><i class="jev" style="width:57%"></i></div><span class="val">0.57</span>
+    <span class="lab">2 阻断，没有替代办法</span><div class="track"><i class="jev" style="width:43%"></i></div><span class="val">0.43</span>
+  </div>
+  <div class="small mt-s">score = 1 × 0.57 + 2 × 0.43 = <span class="num accent">1.43</span>　·　置信度 <span class="num">0.35</span></div>
+</div>
+<div class="panel">
+  <div class="ph"><div class="card-title">Noul<span>一句话为真的概率</span></div></div>
+  <div class="small muted" style="margin-bottom:10px">客户是不是在要求转人工</div>
+  <div class="bars">
+    <span class="lab">“谢谢，已经好了”</span><div class="track"><i style="width:2%"></i></div><span class="val">0.02</span>
+    <span class="lab">问怎么重置密码</span><div class="track"><i style="width:7%"></i></div><span class="val">0.07</span>
+    <span class="lab">“今天必须解决”</span><div class="track"><i style="width:26%"></i></div><span class="val">0.26</span>
+    <span class="lab">“你是机器人吗”</span><div class="track"><i style="width:40%"></i></div><span class="val">0.40</span>
+    <span class="lab">想找人聊发票</span><div class="track"><i class="jev" style="width:84%"></i></div><span class="val accent">0.84</span>
+    <span class="lab">“问了三遍，要真人”</span><div class="track"><i class="jev" style="width:99%"></i></div><span class="val accent">0.99</span>
+  </div>
+</div>
+</body></html>

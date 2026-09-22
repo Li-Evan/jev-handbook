@@ -1,0 +1,44 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .head { display: flex; align-items: center; gap: 12px; }
+  .head .t { font-weight: 600; }
+  .rec { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; font-size: 22px; margin-top: 10px; }
+  .rec .k { color: var(--muted); }
+  .rec .bad { color: var(--bad); font-weight: 600; }
+  .bars { grid-template-columns: 200px 1fr 70px; gap: 14px 16px; font-size: 22px; margin-top: 14px; }
+  .bars .val { font-size: 22px; min-width: 0; }
+  .track.th { position: relative; overflow: visible; }
+  .track.th::after { content: ""; position: absolute; left: 70%; top: -8px; bottom: -8px; border-left: 3px dashed var(--ink); }
+  .thlab { position: relative; height: 24px; }
+  .thlab span { position: absolute; left: 70%; transform: translateX(-50%); font: 700 20px/1 "JetBrains Mono", Menlo, monospace; bottom: 2px; }
+  .note { font-size: 22px; color: var(--muted); margin-top: 14px; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .split .arrow { justify-self: center; }
+</style></head><body>
+<div class="col">
+  <div class="box llm">
+    <div class="head"><span class="tag llm">便宜</span><span class="t"><span class="mono">gpt-5.4-mini</span> 先抽两个字段</span></div>
+    <div class="rec">
+      <span class="k">注册开放日期</span><span>留空，这是对的</span>
+      <span class="k">说明</span><span class="bad">照 schema 示例编了一句</span>
+    </div>
+  </div>
+  <div class="arrow down"></div>
+  <div class="box jev">
+    <div class="head"><span class="tag jev">JEV</span><span class="t">逐个字段问 Noul，出错对应 true</span></div>
+    <div class="bars">
+      <span></span><div class="thlab"><span>0.7</span></div><span></span>
+      <span class="lab">说明：编造的</span><div class="track th"><i class="jev" style="width:95%"></i></div><span class="val accent">0.95</span>
+      <span class="lab">说明：取自无关文字</span><div class="track th"><i class="jev" style="width:85%"></i></div><span class="val accent">0.85</span>
+      <span class="lab">整体：该不该升级</span><div class="track th"><i style="width:56%"></i></div><span class="val">0.56</span>
+    </div>
+    <div class="note">取最大值：一道过线就升级。只看整体题，这条过不了线</div>
+  </div>
+  <div class="split">
+    <div class="arrow down"></div><div class="arrow down"></div>
+    <div class="box llm"><div class="head"><span class="t">有一道超过 0.7</span><span class="tag">本例</span></div><div class="d">交给 <span class="mono">gpt-5.5</span> 重抽<br>价格约 7 倍，重抽后说明留空</div></div>
+    <div class="box dashed"><div class="t muted">都不超过 0.7</div><div class="d">直接用便宜模型抽出的结果</div></div>
+  </div>
+</div>
+<div class="tiny muted mt">数据：官方 SDE 级联 cookbook 里的纽约大学活动日历</div>
+</body></html>

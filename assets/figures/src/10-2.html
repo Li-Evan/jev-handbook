@@ -1,0 +1,23 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .bars { grid-template-columns: auto 1fr 130px; gap: 8px 16px; }
+  .bucket { grid-column: 1 / -1; font-weight: 700; margin-top: 16px; }
+  .bucket:first-child { margin-top: 0; }
+  .val.bad { color: var(--bad); }
+</style></head><body>
+<div class="bars">
+  <div class="bucket">路由准确率</div>
+  <span class="lab small">只写标签名</span><div class="track"><i style="width:66.7%"></i></div><span class="val">66.7%</span>
+  <span class="lab small">加一句说明</span><div class="track"><i class="jev" style="width:97.5%"></i></div><span class="val accent">97.5%</span>
+  <div class="bucket">难任务分给强模型</div>
+  <span class="lab small">只写标签名</span><div class="track"><i style="width:0%"></i></div><span class="val bad">0 / 40</span>
+  <span class="lab small">加一句说明</span><div class="track"><i class="jev" style="width:92.5%"></i></div><span class="val accent">37 / 40</span>
+  <div class="bucket">答错时的置信度中位数</div>
+  <span class="lab small">只写标签名</span><div class="track"><i style="width:96%"></i></div><span class="val bad">0.96</span>
+  <span class="lab small">加一句说明</span><div class="track"><i class="jev" style="width:59%"></i></div><span class="val accent">0.59</span>
+  <div class="bucket">注入攻击得手</div>
+  <span class="lab small">只写标签名</span><div class="track"><i style="width:0%"></i></div><span class="val">0 / 40</span>
+  <span class="lab small">加一句说明</span><div class="track"><i class="jev" style="width:0%"></i></div><span class="val">0 / 40</span>
+</div>
+<div class="tiny muted mt">数据：judge-audit 路由问法对比报告，120 条程序生成的编程任务</div>
+</body></html>

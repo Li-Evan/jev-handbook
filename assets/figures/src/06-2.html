@@ -1,0 +1,29 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .bars { grid-template-columns: 96px 1fr 212px; gap: 8px 16px; }
+  .bucket { grid-column: 1 / -1; font-weight: 700; margin-top: 16px; }
+  .bucket:first-child { margin-top: 0; }
+  .track { position: relative; }
+  .track i { position: absolute; left: 0; top: 0; }
+  .track i.range { background: #ffb08f; border-radius: 0; }
+  .track i.range.llm { background: #9fb2c9; }
+  .bars .val { font-size: 22px; }
+  .val.accent { color: var(--jev); }
+</style></head><body>
+<div class="legend" style="margin-bottom:14px"><span style="--c: var(--jev)">Jev 读候选表</span><span style="--c: var(--llm)">Claude Opus 5 看截图</span></div>
+<div class="bars">
+  <div class="bucket">模型延迟</div>
+  <span class="lab small">Jev</span><div class="track"><i class="range" style="width:7.31%"></i><i class="jev" style="width:2.5%"></i></div><span class="val accent">0.13 到 0.38 秒</span>
+  <span class="lab small">Opus 5</span><div class="track"><i class="llm" style="width:100%"></i></div><span class="val">5.2 秒</span>
+  <div class="bucket">含截屏和识别的单步耗时</div>
+  <span class="lab small">Jev</span><div class="track"><i class="jev" style="width:27.27%"></i></div><span class="val accent">约 1.5 秒</span>
+  <span class="lab small">Opus 5</span><div class="track"><i class="llm" style="width:100%"></i></div><span class="val">约 5.5 秒</span>
+  <div class="bucket">每次判断成本</div>
+  <span class="lab small">Jev</span><div class="track"><i class="jev" style="width:0.625%"></i></div><span class="val accent">0.0002 美元</span>
+  <span class="lab small">Opus 5</span><div class="track"><i class="llm" style="width:100%"></i></div><span class="val">0.032 美元</span>
+  <div class="bucket">12 步任务成本</div>
+  <span class="lab small">Jev</span><div class="track"><i class="jev" style="width:0.333%"></i></div><span class="val accent">0.003 美元</span>
+  <span class="lab small">Opus 5</span><div class="track"><i class="range llm" style="width:100%"></i><i class="llm" style="width:44.44%"></i></div><span class="val">0.40 到 0.90 美元</span>
+</div>
+<div class="tiny muted mt">每组柱长按组内最大值成比例，浅色一段是区间。数据：typesafe-computer-use 作者在同一张截图、同一个目标上自测</div>
+</body></html>

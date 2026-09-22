@@ -1,0 +1,69 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  #chart { position: relative; width: 728px; height: 470px; }
+  #chart > * { position: absolute; }
+  .ref { font-size: 22px; line-height: 1.3; white-space: nowrap; }
+  .ref b { font: 700 22px/1.3 "JetBrains Mono", Menlo, monospace; }
+  .ref.r { text-align: right; }
+  .vl { width: 0; border-left: 2px solid; }
+  .code-c { color: var(--ink); border-color: var(--ink); }
+  .jev-c { color: var(--jev); border-color: var(--jev); }
+  .human-c { color: var(--human); border-color: var(--human); }
+  .vl.dash { border-left-style: dashed; }
+  .rowlab { left: 0; font-size: 22px; transform: translateY(-50%); white-space: nowrap; }
+  .val { left: 514px; transform: translateY(-50%); font-size: 22px; white-space: nowrap; }
+  .val b { font: 700 22px/1 "JetBrains Mono", Menlo, monospace; }
+  .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--jev); transform: translate(-50%, -50%); }
+  .range { height: 16px; border-radius: 8px; background: var(--jev); transform: translateY(-50%); }
+  .axis { height: 0; border-top: 2px solid var(--muted); }
+  .tick { width: 0; height: 10px; border-left: 2px solid var(--muted); }
+  .tl { font-size: 20px; color: var(--muted); transform: translateX(-50%); white-space: nowrap; }
+  .hdr { left: 514px; font-size: 20px; color: var(--muted); }
+</style></head><body>
+<div id="chart"></div>
+<div class="tiny muted mt">横轴为对数刻度。数据：各项目作者报告；接话间隙：Stivers 等人，2009</div>
+<script>
+const X0 = 130, W = 370, LO = 1, HI = Math.log10(2000);
+const x = v => X0 + (Math.log10(v) - LO) / (HI - LO) * W;
+const c = document.getElementById('chart');
+const add = (cls, style, html = '') => { const d = document.createElement('div'); d.className = cls; Object.assign(d.style, style); d.innerHTML = html; c.appendChild(d); return d; };
+const AXIS = 410, ROW0 = 176, ROWH = 48;
+
+// reference lines: [value, tier top, label html, color class, align, dashed]
+const refs = [
+  [16.7, 72, '60 帧游戏的一帧<br><b>16.7</b> 毫秒', 'code-c', 'r', false],
+  [100, 0, '官方说的大多数请求<br>约 <b>100</b> 毫秒', 'jev-c', 'r', true],
+  [208, 0, '人接话间隙平均<br><b>208</b> 毫秒', 'human-c', 'l', false],
+];
+for (const [v, top, html, col, al, dash] of refs) {
+  const lab = add(`ref ${al} ${col}`, { top: top + 'px' }, html);
+  const w = lab.offsetWidth, h = lab.offsetHeight;
+  lab.style.left = (al === 'r' ? x(v) - 10 - w : x(v) + 10) + 'px';
+  add(`vl ${col}${dash ? ' dash' : ''}`, { left: x(v) - 1 + 'px', top: top + 4 + 'px', height: AXIS - top - 4 + 'px' });
+}
+add('hdr', { top: '118px' }, '作者报告');
+
+// measured rows
+const rows = [
+  ['jev-drone', 118, null, '中位数 <b>118</b> 毫秒'],
+  ['AIAvatarKit', 220, null, '约 <b>220</b> 毫秒'],
+  ['jev-tetris', 220, null, '约 <b>220</b> 毫秒一步'],
+  ['jev-canvas', 300, 550, '<b>300</b> 到 <b>550</b> 毫秒'],
+  ['马里奥实验', 1139.7, null, '浏览器往返中位数<br><b>1,139.7</b> 毫秒'],
+];
+rows.forEach(([name, a, b, val], i) => {
+  const y = ROW0 + i * ROWH + (i === 4 ? 12 : 0);
+  add('rowlab', { top: y + 'px' }, name);
+  if (b) add('range', { left: x(a) + 'px', width: x(b) - x(a) + 'px', top: y + 'px' });
+  else add('dot', { left: x(a) + 'px', top: y + 'px' });
+  add('val', { top: y + 'px' }, val);
+});
+
+// axis
+add('axis', { left: X0 + 'px', width: W + 'px', top: AXIS + 'px' });
+for (const [v, t] of [[10, '10 毫秒'], [100, '100 毫秒'], [1000, '1 秒']]) {
+  add('tick', { left: x(v) - 1 + 'px', top: AXIS + 'px' });
+  add('tl', { left: x(v) + 'px', top: AXIS + 16 + 'px' }, t);
+}
+</script>
+</body></html>

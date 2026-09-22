@@ -1,0 +1,115 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+  .card { background: var(--card); border: 2px solid var(--rule); border-radius: 16px; padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 14px; }
+  .card .h { font-weight: 700; font-size: 27px; }
+  .sk { flex: 1; min-height: 150px; padding: 6px 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; font-size: 20px; }
+  .say { font-size: 22px; line-height: 1.45; margin-top: auto; }
+  .mini { border: 2px solid var(--rule); border-radius: 9px; padding: 5px 10px; background: var(--card); white-space: nowrap; line-height: 1.3; }
+  .mini.jev { border-color: var(--jev); background: var(--jev-soft); }
+  .mini.code { border-color: var(--code); background: var(--code); color: #f1ece1; }
+  .mini.llm { border-color: var(--llm); background: var(--llm-soft); }
+  .mini.human { border-color: var(--human); background: var(--human-soft); }
+  .mini.off { border-style: dashed; background: transparent; color: var(--muted); }
+  .ar { color: var(--muted); font: 700 28px/1 "JetBrains Mono", Menlo, monospace; }
+  .hr { display: flex; align-items: center; gap: 8px; }
+  /* 1 fan-out */
+  .req { border: 2px solid var(--jev); border-radius: 12px; padding: 8px; display: grid; grid-template-columns: auto auto; gap: 6px; }
+  .req .mini { padding: 3px 8px; text-align: center; }
+  .req-lab { font-size: 20px; color: var(--jev); font-weight: 600; }
+  /* 2 routing */
+  .band { width: 290px; display: flex; height: 40px; border-radius: 8px; overflow: hidden; }
+  .band > div { display: flex; align-items: center; justify-content: center; font-weight: 600; }
+  .band .lo { width: 58%; background: #ebe5d7; color: var(--muted); }
+  .band .hi { width: 42%; background: var(--jev); color: #fff; }
+  .band-wrap { position: relative; padding-top: 26px; }
+  .cut { position: absolute; left: 58%; top: 0; bottom: -6px; border-left: 3px dashed var(--ink); }
+  .cut span { position: absolute; top: -2px; left: 6px; font-size: 20px; white-space: nowrap; }
+  .outs { width: 290px; display: grid; grid-template-columns: 58fr 42fr; gap: 8px; }
+  .outs .mini { text-align: center; }
+  .dn { position: relative; }
+  .dn .w { position: absolute; left: 100%; top: 4px; margin-left: 8px; }
+  /* 3 composite */
+  .cbars { display: grid; grid-template-columns: 110px; gap: 9px; }
+  .cbars i { display: block; height: 20px; background: var(--jev); border-radius: 4px; }
+  .w { font-size: 20px; color: var(--muted); text-align: center; line-height: 1.2; white-space: nowrap; }
+  /* 4 candidates */
+  .cands { display: grid; grid-template-columns: auto auto; gap: 8px; }
+  .cands .mini { font: 700 20px/1.3 "JetBrains Mono", Menlo, monospace; text-align: center; }
+  /* 5 read vs compute */
+  .parts { display: flex; gap: 8px; }
+  /* 6 escalate */
+  .esc { display: grid; grid-template-columns: auto auto; align-items: center; gap: 2px 10px; justify-items: center; }
+</style></head><body>
+<div class="grid">
+
+  <div class="card">
+    <div class="h">一次问完</div>
+    <div class="sk">
+      <div class="hr">
+        <div class="mini">工单</div><span class="ar">→</span>
+        <div class="req"><div class="mini jev">类别</div><div class="mini jev">严重程度</div><div class="mini jev">退款</div><div class="mini jev">恼火</div></div>
+      </div>
+      <div class="req-lab">同一个请求，一次往返</div>
+    </div>
+    <div class="say">几道题一起问，省掉等上一个答案再问的那次往返</div>
+  </div>
+
+  <div class="card">
+    <div class="h">置信度路由</div>
+    <div class="sk">
+      <div class="band-wrap"><div class="band"><div class="lo">不到线</div><div class="hi">过线</div></div><div class="cut"><span>阈值</span></div></div>
+      <div class="outs"><div class="mini human">交给人</div><div class="mini code">自动执行</div></div>
+    </div>
+    <div class="say">答案靠不住时不动手，线的高低看判错的代价</div>
+  </div>
+
+  <div class="card">
+    <div class="h">组合打分</div>
+    <div class="sk">
+      <div class="hr" style="gap:12px">
+        <div class="col" style="gap:8px"><span class="w" style="text-align:left">几道 Score</span><div class="cbars"><i style="width:80%"></i><i style="width:45%"></i><i style="width:65%"></i><i style="width:30%"></i></div></div>
+        <div class="col" style="gap:4px;align-items:center"><span class="w">× 权重</span><span class="ar">→</span></div>
+        <div class="mini code">代码算总分</div>
+      </div>
+    </div>
+    <div class="say">综合判断拆成几道小题，总分不对也看得出是哪道带偏的</div>
+  </div>
+
+  <div class="card">
+    <div class="h">先找候选再选</div>
+    <div class="sk">
+      <div class="mini code">正则找出所有金额</div>
+      <span class="ar">↓</span>
+      <div class="cands"><div class="mini off">1,200.00</div><div class="mini off">115.50</div><div class="mini jev">1,315.50</div><div class="mini off">50.00</div></div>
+      <div class="req-lab">Jev 挑出应付总额</div>
+    </div>
+    <div class="say">Jev 不写字，就让它在原文候选里挑，编不出新数字</div>
+  </div>
+
+  <div class="card">
+    <div class="h">模型读，代码算</div>
+    <div class="sk">
+      <div class="parts"><div class="mini jev">月份</div><div class="mini jev">几号</div><div class="mini jev">年份</div></div>
+      <span class="ar">↓</span>
+      <div class="mini code">代码拼日期、算间隔</div>
+    </div>
+    <div class="say">日期、数字、计数 Jev 算不准，让它只管读，算留给代码</div>
+  </div>
+
+  <div class="card">
+    <div class="h">验证后升级</div>
+    <div class="sk">
+      <div class="esc">
+        <div class="mini llm">便宜模型</div><span></span>
+        <span class="ar">↓</span><span></span>
+        <div class="mini jev">Jev 查</div><span class="w" style="justify-self:start">→ 没问题就直接用</span>
+        <span class="ar dn">↓<span class="w">有问题</span></span><span></span>
+        <div class="mini llm">贵模型</div><span></span>
+      </div>
+    </div>
+    <div class="say">便宜的先做，查出问题的才花钱交给贵模型</div>
+  </div>
+
+</div>
+</body></html>

@@ -1,0 +1,41 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .stage { display: grid; grid-template-columns: 92px 1fr; column-gap: 16px; align-items: center; }
+  .stage .who { font-size: 22px; font-weight: 600; color: var(--muted); text-align: right; }
+  .stage .who.jevs { color: var(--jev); }
+  .gap { display: grid; grid-template-columns: 92px 1fr; column-gap: 16px; }
+  .gap .arrow { margin: 6px 0; }
+  .jobs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .jobs span { background: var(--card); border: 2px solid var(--jev); border-radius: 10px; padding: 8px 12px; font-size: 22px; white-space: nowrap; }
+  .first { display: grid; grid-template-columns: 172px 44px 1fr; align-items: center; column-gap: 12px; }
+  .first .arrow { justify-self: center; }
+  .gap .first .arrow { margin: 6px 0; }
+  .ends { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .ends .arrow { justify-self: center; margin: 6px 0; }
+</style></head><body>
+<div class="stage">
+  <div class="who">召回</div>
+  <div class="first">
+    <div class="box"><div class="t">整个语料库</div></div>
+    <div class="arrow right"></div>
+    <div class="box code"><div class="t">BM25 或向量检索</div><div class="d">捞出几十到上百个候选</div></div>
+  </div>
+</div>
+<div class="gap"><div></div><div class="first"><div></div><div></div><div class="arrow down"></div></div></div>
+<div class="stage">
+  <div class="who jevs">判断</div>
+  <div class="box jev"><div class="t">Jev 逐个看候选</div>
+    <div class="jobs"><span>重排</span><span>过滤无关和注入</span><span>分进证据区或冲突区</span><span>判断有没有答案</span></div>
+  </div>
+</div>
+<div class="gap"><div></div>
+  <div class="ends"><div class="arrow down"></div><div class="arrow down"></div></div>
+</div>
+<div class="stage">
+  <div class="who">生成</div>
+  <div class="ends">
+    <div class="box llm"><div class="t">大模型写答案</div><div class="d">证据区和冲突区分开放</div></div>
+    <div class="box dashed"><div class="t">不叫醒大模型</div><div class="d">把关 Noul 太低时</div></div>
+  </div>
+</div>
+</body></html>

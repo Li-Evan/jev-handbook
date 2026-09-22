@@ -1,0 +1,23 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .top { text-align: center; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; }
+  .split .arrow { justify-self: center; margin: 8px 0; }
+  .head { font-weight: 700; font-size: 28px; margin-bottom: 12px; }
+  .head span { display: block; font-size: 22px; font-weight: 400; color: var(--muted); }
+  .foot { font-size: 24px; font-weight: 600; margin-top: 14px; }
+  .who { font-size: 20px; color: var(--muted); margin-top: 6px; }
+</style></head><body>
+<div class="box bad top"><div class="t">拿不到 Jev 的答案</div><div class="d">超时或调用失败</div></div>
+<div class="split">
+  <div class="arrow down"></div><div class="arrow down"></div>
+  <div class="head">路由<span>挑工具、挑模型</span></div>
+  <div class="head">审批<span>这一步要不要放行</span></div>
+  <div class="box code"><div class="t">退回规则或检索排序</div><div class="d">回到接 Jev 之前的做法</div></div>
+  <div class="box human"><div class="t">退回人工审批</div><div class="d">回到原来的人工流程</div></div>
+  <div class="foot muted">最多慢一点、挑得差一点</div>
+  <div class="foot" style="color:var(--bad)">不能默认放行</div>
+  <div class="who">OpenHuman、SLO Router</div>
+  <div class="who">Pisper、hermes-jev-approvals</div>
+</div>
+</body></html>

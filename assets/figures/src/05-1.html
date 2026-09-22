@@ -1,0 +1,52 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .g { display: grid; grid-template-columns: 60px 280px 34px 1fr; }
+  .c2.box { align-self: center; }
+  .c2 { grid-column: 2; }
+  .c4 { grid-column: 4; }
+  .box { padding: 12px 16px; }
+  .box .d { font-size: 22px; }
+  .fix { height: 100px; display: flex; flex-direction: column; justify-content: center; }
+  .req { background: #ebe5d7; border-color: var(--gray); }
+  .step { grid-column: 2; position: relative; min-height: 58px; }
+  .step::before { content: ""; position: absolute; left: 50%; top: 6px; bottom: 16px; border-left: 3px solid var(--muted); transform: translateX(-1.5px); }
+  .step::after { content: ""; position: absolute; left: 50%; bottom: 6px; transform: translateX(-9px); border: 9px solid transparent; border-top: 12px solid var(--muted); border-bottom: 0; }
+  .step .lab { position: absolute; left: calc(50% + 16px); top: 50%; transform: translateY(-50%); font-size: 22px; color: var(--muted); }
+  .conn { align-self: center; border-top: 3px dashed var(--jev); }
+  .seam { align-self: center; margin: 8px 0; }
+  .seam .t { color: var(--jev); }
+  .seam .d { color: var(--ink); }
+  .loop { grid-column: 1; grid-row: 3 / 8; margin: 58px 0 58px 34px; border: 3px solid var(--muted); border-right: 0; border-radius: 14px 0 0 14px; position: relative; }
+  .loop::after { content: ""; position: absolute; right: -2px; top: -10px; border: 8px solid transparent; border-left: 12px solid var(--muted); border-right: 0; }
+  .loop-lab { grid-column: 1; grid-row: 3 / 8; align-self: center; justify-self: start; writing-mode: vertical-rl; font-size: 22px; color: var(--muted); letter-spacing: .1em; }
+  .latin { font-family: "Helvetica Neue", Helvetica, "PingFang SC", sans-serif; }
+</style></head><body>
+<div class="legend" style="margin-bottom:18px"><span style="--c: var(--llm)">大模型</span><span style="--c: var(--ink)">工具和代码</span><span style="--c: var(--jev)">Jev 插进来的判断</span></div>
+<div class="g">
+  <div class="box req c2" style="grid-row:1"><div class="t">用户发来请求</div></div>
+
+  <div class="step" style="grid-row:2"></div>
+  <div class="conn" style="grid-column:2 / 4; grid-row:2; margin-left:152px"></div>
+  <div class="box jev seam c4" style="grid-row:2"><div class="t">每轮开始前</div><div class="d">Nitro 挑出这一轮能用的工具</div></div>
+
+  <div class="box fix c2" style="grid-row:3"><div class="t">上下文</div><div class="d">每转一圈都要重读一遍</div></div>
+  <div class="conn" style="grid-column:3; grid-row:3"></div>
+  <div class="box jev seam fix c4" style="grid-row:3"><div class="t">上下文快满时</div><div class="d">压缩：哪些工具调用还要留</div></div>
+
+  <div class="step" style="grid-row:4"><span class="lab">读</span></div>
+  <div class="box llm fix c2" style="grid-row:5"><div class="t">大模型</div><div class="d">读完上下文，决定下一步</div></div>
+  <div class="step" style="grid-row:6"><span class="lab">调用</span></div>
+
+  <div class="box code fix c2" style="grid-row:7"><div class="t">工具</div><div class="d">读写文件、跑命令</div></div>
+  <div class="conn" style="grid-column:3; grid-row:7"></div>
+  <div class="box jev seam fix c4" style="grid-row:7"><div class="t">每次编辑后</div><div class="d">Abide：这段 diff 违规了吗</div></div>
+
+  <div class="loop"></div>
+  <div class="loop-lab">结果塞回上下文</div>
+
+  <div class="step" style="grid-row:8"><span class="lab">做完</span></div>
+  <div class="box req fix c2" style="grid-row:9"><div class="t">提交 PR</div></div>
+  <div class="conn" style="grid-column:3; grid-row:9"></div>
+  <div class="box jev seam fix c4" style="grid-row:9"><div class="t">PR 提交后</div><div class="d"><span class="latin">jev-auto-approve</span>：要不要人审</div></div>
+</div>
+</body></html>

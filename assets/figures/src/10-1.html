@@ -1,0 +1,24 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .bars { grid-template-columns: 150px 1fr 110px; gap: 8px 16px; }
+  .bucket { grid-column: 1 / -1; display: flex; justify-content: space-between; font-weight: 700; margin-top: 16px; }
+  .bucket.hot { color: var(--jev); }
+  .hl { background: var(--jev-soft); border-radius: 12px; }
+</style></head><body>
+<div class="legend" style="margin-bottom:6px"><span style="--c: var(--ink)">AG News 新闻主题（4 类）</span><span style="--c: var(--llm)">情绪识别（6 类）</span></div>
+<div class="bars">
+  <div class="bucket"><span>置信度 0.9 到 1.0</span><span class="muted small">323 条 / 200 条</span></div>
+  <span class="lab small">新闻</span><div class="track"><i class="ink" style="width:91.6%"></i></div><span class="val">91.6%</span>
+  <span class="lab small">情绪</span><div class="track"><i class="llm" style="width:82%"></i></div><span class="val">82.0%</span>
+  <div class="bucket hot"><span>置信度 0.7 到 0.9</span><span class="small">27 条 / 79 条</span></div>
+  <span class="lab small">新闻</span><div class="track"><i class="ink" style="width:85.2%"></i></div><span class="val">85.2%</span>
+  <span class="lab small">情绪</span><div class="track"><i class="llm" style="width:49.4%"></i></div><span class="val accent">49.4%</span>
+  <div class="bucket"><span>置信度 0.5 到 0.7</span><span class="muted small">28 条 / 52 条</span></div>
+  <span class="lab small">新闻</span><div class="track"><i class="ink" style="width:64.3%"></i></div><span class="val">64.3%</span>
+  <span class="lab small">情绪</span><div class="track"><i class="llm" style="width:36.5%"></i></div><span class="val">36.5%</span>
+  <div class="bucket"><span>置信度 0 到 0.5</span><span class="muted small">22 条 / 69 条</span></div>
+  <span class="lab small">新闻</span><div class="track"><i class="ink" style="width:63.6%"></i></div><span class="val">63.6%</span>
+  <span class="lab small">情绪</span><div class="track"><i class="llm" style="width:29%"></i></div><span class="val">29.0%</span>
+</div>
+<div class="tiny muted mt">每一档里 Jev 答对的比例。数据：classifier.dev 在两个公开数据集上各跑 400 条</div>
+</body></html>

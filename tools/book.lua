@@ -1,5 +1,5 @@
--- Numbers chapters as "第 N 章", inserts the part pages listed in metadata.yaml,
--- and keeps each chapter's "本章提到的资料" section out of the table of contents.
+-- Numbers chapters as "第 N 章" and figures as "图 N-M", inserts the part pages listed in
+-- metadata.yaml, and keeps each chapter's "本章提到的资料" section out of the table of contents.
 
 local function has(classes, name)
   for _, c in ipairs(classes) do
@@ -30,5 +30,33 @@ function Pandoc(doc)
     blocks:insert(b)
   end
   doc.blocks = blocks
+
+  -- Number figures as 图 N-M, including figures nested in lists.
+  local chapter, figure = 0, 0
+  doc = doc:walk({
+    traverse = "topdown",
+    Header = function(h)
+      if h.level == 1 and not has(h.classes, "unnumbered") then
+        chapter = chapter + 1
+        figure = 0
+      end
+    end,
+    Figure = function(f)
+      if chapter == 0 then return nil end
+      figure = figure + 1
+      local first = f.caption.long[1]
+      if first then
+        first.content = pandoc.Inlines("图 " .. chapter .. "-" .. figure .. "\u{3000}") .. first.content
+      end
+      return f
+    end,
+  })
   return doc
+end
+
+function Image(img)
+  if FORMAT:match("html") then
+    img.attributes.loading = "lazy"
+  end
+  return img
 end

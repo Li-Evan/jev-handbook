@@ -1,0 +1,59 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .formula { font-size: 24px; font-weight: 600; }
+  .formula .muted { font-weight: 400; font-size: 22px; }
+  .key { display: flex; align-items: center; gap: 10px; font-size: 22px; color: var(--muted); margin-top: 8px; }
+  .key i { display: inline-block; width: 0; height: 26px; border-left: 3px dashed var(--ink); }
+  .panel { background: var(--card); border: 2px solid var(--rule); border-radius: 16px; padding: 18px 22px; margin-top: 18px; }
+  .ph { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+  .ph span { color: var(--muted); font-size: 22px; }
+  .bars { grid-template-columns: 124px 1fr 80px; gap: 12px 16px; font-size: 23px; }
+  .track { position: relative; overflow: visible; }
+  .track .even { position: absolute; top: -5px; bottom: -5px; border-left: 3px dashed var(--ink); }
+  .sep { grid-column: 1 / -1; border-top: 2px solid var(--rule); margin: 2px 0; }
+  .bars .val { min-width: 0; }
+  .bars .val.rest { font: 400 21px/1 "PingFang SC", sans-serif; color: var(--muted); }
+  .math { font-family: "Helvetica Neue", Helvetica, "PingFang SC", sans-serif; }
+  .calc { font-size: 22px; color: var(--muted); margin-top: 10px; }
+  .calc .num { color: var(--ink); }
+</style></head><body>
+<div class="formula math">置信度 = (n × 最高概率 − 1) / (n − 1)<span class="muted">　n 是选项个数</span></div>
+<div class="key"><i></i>虚线：n 个选项平分时每个选项的概率</div>
+
+<div class="panel">
+  <div class="ph"><div class="card-title">三个选项</div><span>鞋店这条消息交给哪个组</span></div>
+  <div class="bars">
+    <span class="lab b">退换货</span><div class="track"><i class="jev" style="width:61%"></i><b class="even" style="left:33.33%"></b></div><span class="val accent">0.61</span>
+    <span class="lab">账单</span><div class="track"><i style="width:35%"></i><b class="even" style="left:33.33%"></b></div><span class="val">0.35</span>
+    <span class="lab">物流</span><div class="track"><i style="width:4%"></i><b class="even" style="left:33.33%"></b></div><span class="val">0.04</span>
+    <div class="sep"></div>
+    <span class="lab b">置信度</span><div class="track"><i class="ink" style="width:42%"></i></div><span class="val">0.42</span>
+  </div>
+  <div class="calc math">(3 × <span class="num">0.61</span> − 1) / 2 ≈ <span class="num">0.42</span></div>
+</div>
+
+<div class="panel">
+  <div class="ph"><div class="card-title">两个选项</div><span>最高概率同样是 0.61</span></div>
+  <div class="bars">
+    <span class="lab b">胜出的选项</span><div class="track"><i class="jev" style="width:61%"></i><b class="even" style="left:50%"></b></div><span class="val accent">0.61</span>
+    <span class="lab">另一个</span><div class="track"><i style="width:39%"></i><b class="even" style="left:50%"></b></div><span class="val rest">其余</span>
+    <div class="sep"></div>
+    <span class="lab b">置信度</span><div class="track"><i class="ink" style="width:22%"></i></div><span class="val">0.22</span>
+  </div>
+  <div class="calc math">(2 × <span class="num">0.61</span> − 1) / 1 = <span class="num">0.22</span></div>
+</div>
+
+<div class="panel">
+  <div class="ph"><div class="card-title">四个选项</div><span>同一条消息：客户想要什么</span></div>
+  <div class="bars">
+    <span class="lab b">退款</span><div class="track"><i class="jev" style="width:40%"></i><b class="even" style="left:25%"></b></div><span class="val accent">0.40</span>
+    <span class="lab">补发</span><div class="track"><i style="width:34%"></i><b class="even" style="left:25%"></b></div><span class="val">0.34</span>
+    <span class="lab">换货</span><div class="track"><i style="width:24%"></i><b class="even" style="left:25%"></b></div><span class="val">0.24</span>
+    <span class="lab">只要个答复</span><div class="track"><i style="width:2%"></i><b class="even" style="left:25%"></b></div><span class="val">0.02</span>
+    <div class="sep"></div>
+    <span class="lab b">置信度</span><div class="track"><i class="ink" style="width:20%"></i></div><span class="val">0.20</span>
+  </div>
+  <div class="calc math">(4 × <span class="num">0.40</span> − 1) / 3 = <span class="num">0.20</span></div>
+</div>
+<div class="tiny muted mt">三个、四个选项两组是官方文档记录的返回值，两个选项那组按式子算出</div>
+</body></html>

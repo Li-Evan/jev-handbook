@@ -1,0 +1,58 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .api { text-align: center; }
+  .api .mono { font-weight: 700; }
+  .panel { background: var(--card); border: 2px solid var(--rule); border-radius: 16px; padding: 16px 20px 18px; }
+  .ph { display: flex; align-items: center; gap: 12px; }
+  .ph .card-title { font-size: 26px; }
+  .ph .who { margin-left: auto; font: 500 20px/1 "JetBrains Mono", Menlo, monospace; color: var(--muted); }
+  .flow { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
+  .flow .box { flex: 1; font-size: 22px; padding: 8px 10px; text-align: center; line-height: 1.35; white-space: nowrap; }
+  .flow .box.in { flex: 0 0 156px; }
+  .flow .box.llm { flex: 0 0 200px; }
+  .flow .box.out { flex: 1 1 0; }
+  .flow .box .k { display: block; font-size: 20px; color: var(--muted); }
+  .flow .box.out { border-color: var(--ink); border-width: 3px; }
+  .flow .arrow { font-size: 26px; }
+  .attrs { display: grid; grid-template-columns: 290px 1fr; gap: 10px; margin-top: 12px; }
+  .chip { font-size: 22px; border-radius: 10px; padding: 5px 12px; background: #ebe5d7; white-space: nowrap; }
+  .chip b { font-weight: 600; margin-right: 6px; }
+  .chip.bad { background: var(--bad-soft); color: var(--bad); }
+  .chip.bad b { color: var(--bad); }
+  .gap { height: 14px; }
+</style></head><body>
+<div class="box code api">对外都是同一个接口　<span class="mono">POST /v1/systemone</span></div>
+<div class="arrow down" style="display:block;text-align:center;margin:6px 0"></div>
+
+<div class="panel">
+  <div class="ph"><span class="tag gray">第一类</span><span class="card-title">读现成模型的 token 概率</span><span class="who">SemIf、openjev-sglang</span></div>
+  <div class="flow">
+    <div class="box in">选项编成字母</div><span class="arrow right"></span>
+    <div class="box llm">开源模型只算一步</div><span class="arrow right"></span>
+    <div class="box out"><span class="k">概率从这里来</span>选项字母的 token 概率</div>
+  </div>
+  <div class="attrs"><span class="chip"><b>训练</b>不用，换底座就能跑</span><span class="chip bad"><b>校准</b>偏自信，要拿标注拟合温度</span></div>
+</div>
+<div class="gap"></div>
+
+<div class="panel">
+  <div class="ph"><span class="tag gray">第二类</span><span class="card-title">训练专门的决策头</span><span class="who">Kev、Laya</span></div>
+  <div class="flow">
+    <div class="box in">state 和问题</div><span class="arrow right"></span>
+    <div class="box llm">底座加决策头</div><span class="arrow right"></span>
+    <div class="box out"><span class="k">概率从这里来</span>训练出的决策头</div>
+  </div>
+  <div class="attrs"><span class="chip"><b>训练</b>要，能接着微调</span><span class="chip"><b>校准</b>拟合温度，Laya 出厂偏自信</span></div>
+</div>
+<div class="gap"></div>
+
+<div class="panel">
+  <div class="ph"><span class="tag gray">第三类</span><span class="card-title">让模型用 JSON 写出概率</span><span class="who">LocalJev</span></div>
+  <div class="flow">
+    <div class="box in">翻成提示词</div><span class="arrow right"></span>
+    <div class="box llm">模型写出 JSON</div><span class="arrow right"></span>
+    <div class="box out"><span class="k">概率从这里来</span>模型在 JSON 里写的数</div>
+  </div>
+  <div class="attrs"><span class="chip"><b>训练</b>不用，普通聊天补全</span><span class="chip bad"><b>校准</b>模型自报，别当校准概率</span></div>
+</div>
+</body></html>

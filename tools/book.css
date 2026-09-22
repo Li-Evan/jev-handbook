@@ -15,3 +15,6 @@ a { color: #b83a0b; }
 h1.part { text-align: center; margin: 30% 0 .6em; font-size: 1.8em; }
 h1.part + p { text-align: center; color: #6d665a; }
 a.uri, td, th { overflow-wrap: anywhere; }
+figure { margin: 1.4em 0; text-align: center; }
+figure img { max-width: 100%; height: auto; }
+figcaption { font-size: .85em; color: #6d665a; margin-top: .4em; text-align: center; }

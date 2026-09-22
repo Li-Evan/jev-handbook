@@ -1,0 +1,46 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .funnel .box { text-align: center; }
+  .funnel .arrow { font-size: 30px; }
+  .sec { font-weight: 700; margin-top: 30px; padding-top: 22px; border-top: 2px solid var(--rule); }
+  .grp { display: grid; grid-template-columns: 170px 1fr 104px; column-gap: 16px; margin-top: 18px; }
+  .grp .name { grid-column: 1 / -1; font-size: 23px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+  .labs, .vals { display: flex; flex-direction: column; gap: 10px; }
+  .labs span, .vals span { height: 30px; display: flex; align-items: center; }
+  .labs span { font-size: 22px; white-space: nowrap; }
+  .vals span { justify-content: flex-end; font: 700 24px/1 "JetBrains Mono", Menlo, monospace; }
+  .tracks { position: relative; display: flex; flex-direction: column; gap: 10px; }
+  .cap { position: absolute; top: -8px; bottom: -8px; border-left: 3px dashed var(--ink); }
+  .cap b { position: absolute; top: -30px; left: -2px; transform: translateX(-50%); font-size: 20px; font-weight: 600; white-space: nowrap; }
+</style></head><body>
+<div class="funnel">
+  <div class="box" style="width:100%"><div class="t">215 个核心工具 + 1,000 个 Composio 动作</div></div>
+  <div class="arrow down"></div>
+  <div class="box code" style="width:72%"><div class="t">检索取前 20</div><div class="d">BM25，或者向量检索</div></div>
+  <div class="arrow down"></div>
+  <div class="box jev" style="width:50%"><div class="t">Jev 挑 1 个，或者 none</div></div>
+</div>
+<div class="sec">只看 66 条对应 Composio 动作的请求</div>
+<div class="grp">
+  <div class="name">BM25 取前 20</div>
+  <div class="labs"><span>短名单召回率</span><span>Jev 前三命中</span></div>
+  <div class="tracks">
+    <div class="track"><i style="width:72.7%"></i></div>
+    <div class="track"><i class="jev" style="width:72.7%"></i></div>
+    <div class="cap" style="left:72.7%"><b>上限</b></div>
+  </div>
+  <div class="vals"><span>72.7%</span><span class="accent">72.7%</span></div>
+</div>
+<div class="grp">
+  <div class="name">向量检索取前 20</div>
+  <div class="labs"><span>短名单召回率</span><span>Jev 首选命中</span></div>
+  <div class="tracks">
+    <div class="track"><i style="width:90.9%"></i></div>
+    <div class="track"><i class="jev" style="width:74.2%"></i></div>
+    <div class="cap" style="left:90.9%"><b>上限</b></div>
+  </div>
+  <div class="vals"><span>90.9%</span><span class="accent">74.2%</span></div>
+</div>
+<div class="tiny muted mt">数据：OpenHuman 2026 年 9 月 22 日的工具搜索评测</div>
+</body></html>

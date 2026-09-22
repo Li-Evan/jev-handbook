@@ -1,0 +1,32 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .side { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+  .side .head { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 28px; }
+  .box { font-size: 22px; padding: 12px 14px; }
+  .qs { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; white-space: nowrap; }
+  .ans { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; }
+  .foot { font-size: 22px; font-weight: 600; margin-top: auto; padding-top: 6px; }
+</style></head><body>
+<div class="row gap-l">
+  <div class="side">
+    <div class="head"><span class="tag llm">LLM</span>大模型：写作文</div>
+    <div class="box"><div class="t">提示词</div><div class="d">读完工单，输出 JSON：部门、情绪、是否退款</div></div>
+    <div class="arrow down"></div>
+    <div class="box llm"><div class="t">生成几十上百个 token</div><div class="d mono">好的，这张工单应该交给技术部门……{"dept": "技术", …}</div></div>
+    <div class="arrow down"></div>
+    <div class="box bad"><div class="t">代码先解析文字</div><div class="d">JSON 外多说两句、字段名写错、给出没列出的部门</div></div>
+    <div class="foot muted">一两秒一条，不知道有几成把握</div>
+  </div>
+  <div class="side">
+    <div class="head"><span class="tag jev">JEV</span>Jev：做判断题</div>
+    <div class="box"><div class="t">state：工单原文</div>
+      <div class="d mt-s qs"><span class="b">Choice</span><span>部门：账单 / 技术 / 销售</span><span class="b">Score</span><span>情绪：平静 / 着急 / 很生气</span><span class="b">Noul</span><span>在要求退款</span></div></div>
+    <div class="arrow down"></div>
+    <div class="box jev"><div class="t">带类型的答案</div>
+      <div class="d ans mt-s"><span>部门</span><span><b class="accent">技术</b> <span class="num">0.85</span></span><span>情绪</span><span>第二档</span><span>退款</span><span class="num">0.03</span></div></div>
+    <div class="arrow down"></div>
+    <div class="box code"><div class="t">代码直接分支、排序、路由</div><div class="d">不需要解析任何文字</div></div>
+    <div class="foot accent">一次请求 70 到 500 毫秒，带概率</div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,45 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .stack { display: grid; grid-template-columns: 150px 1fr; gap: 12px 18px; align-items: center; }
+  .hz { text-align: right; font-size: 22px; white-space: nowrap; }
+  .hz .num { font-size: 26px; }
+  .stack .box { display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+  .stack .box .d { margin-top: 2px; }
+  .veto { flex: none; }
+  .axis-note { grid-column: 1; text-align: right; }
+  .sbar { display: flex; height: 54px; border-radius: 10px; overflow: hidden; margin-top: 12px; }
+  .sbar > div { display: flex; align-items: center; justify-content: center; color: #fff; font: 700 24px/1 "JetBrains Mono", Menlo, monospace; }
+  .s-per { background: var(--ink); }
+  .s-jev { background: var(--jev); }
+  .s-use { background: var(--muted); }
+  .s-fly { background: var(--gray); color: var(--ink) !important; }
+  .key { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; margin-top: 14px; font-size: 22px; }
+  .key span::before { content: ""; display: inline-block; width: 18px; height: 18px; border-radius: 4px; margin-right: 10px; vertical-align: -2px; background: var(--c); }
+  .key b { font-family: "JetBrains Mono", Menlo, monospace; }
+</style></head><body>
+<div class="stack">
+  <div class="hz">约 <span class="num">2.5</span> 赫兹</div>
+  <div class="box jev"><div><div class="t">Jev：战术判断</div><div class="d">六个动作里选一个，只是建议</div></div></div>
+  <div class="hz"><span class="num">15</span> 赫兹</div>
+  <div class="box code"><div><div class="t">感知层</div><div class="d">深度图和分割图写成场景描述</div></div></div>
+  <div class="hz"><span class="num">50</span> 赫兹</div>
+  <div class="box code"><div><div class="t">制导和安全反射层</div><div class="d">可以推翻 Jev 的任何判断</div></div><span class="tag bad veto">否决权</span></div>
+  <div class="hz"><span class="num">500</span> 赫兹</div>
+  <div class="box code"><div><div class="t">几何控制器</div><div class="d">管推力和姿态</div></div></div>
+</div>
+<div class="rule mt"></div>
+<div class="mt b">另一个隧道实验：每秒 9 米飞行时的反应时间</div>
+<div class="sbar">
+  <div class="s-per" style="flex:30"></div>
+  <div class="s-jev" style="flex:118">13%</div>
+  <div class="s-use" style="flex:24"></div>
+  <div class="s-fly" style="flex:700">80%</div>
+</div>
+<div class="key">
+  <span style="--c: var(--ink)">感知 <b>0.03</b> 秒</span>
+  <span style="--c: var(--jev)">Jev <b>0.118</b> 秒</span>
+  <span style="--c: var(--muted)">判断被用上 <b>0.024</b> 秒</span>
+  <span style="--c: var(--gray)">飞机横移 2 米 <b>0.70</b> 秒</span>
+</div>
+<div class="tiny muted mt">数据：jev-drone 作者报告，MuJoCo 仿真</div>
+</body></html>

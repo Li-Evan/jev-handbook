@@ -1,0 +1,36 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .panel { background: var(--card); border: 2px solid var(--rule); border-radius: 16px; padding: 18px 22px 22px; }
+  .panel + .panel { margin-top: 18px; }
+  .ph { display: flex; align-items: baseline; gap: 12px; }
+  .ph .from { font-size: 22px; color: var(--muted); }
+  .metric { font-size: 22px; margin: 8px 0 4px; }
+  .metric b { color: var(--jev); }
+  .bars { grid-template-columns: 130px 1fr 96px; gap: 18px 16px; }
+  .lab .sub { display: block; font-size: 20px; color: var(--muted); line-height: 1.2; }
+  .track.band { position: relative; overflow: visible; height: 34px; }
+  .track.band i { border-radius: 6px 0 0 6px; }
+  .track.band::after { content: ""; position: absolute; left: 70%; width: 20%; top: -7px; bottom: -7px; border: 3px dashed var(--ink); border-radius: 6px; }
+  .bandlab { position: relative; height: 26px; }
+  .bandlab span { position: absolute; left: 80%; transform: translateX(-50%); white-space: nowrap; font-size: 20px; color: var(--ink); bottom: 0; }
+</style></head><body>
+<div class="panel">
+  <div class="ph"><div class="card-title">越狱基准</div><span class="from">第 9 章，Jev 判断消息是不是攻击</span></div>
+  <div class="metric">打分在 0.7 到 0.9 的消息里，<b>真是攻击的比例</b></div>
+  <div class="bars">
+    <span></span><div class="bandlab"><span>字面上该落在这里</span></div><span></span>
+    <span class="lab">第一组<span class="sub">攻击占 12%</span></span><div class="track band"><i class="jev" style="width:21.5%"></i></div><span class="val">21.5%</span>
+    <span class="lab">第二组<span class="sub">攻击占 72%</span></span><div class="track band"><i class="jev" style="width:84.2%"></i></div><span class="val">84.2%</span>
+  </div>
+</div>
+<div class="panel">
+  <div class="ph"><div class="card-title">classifier.dev</div><span class="from">第 10 章，Jev 做文本分类</span></div>
+  <div class="metric">置信度在 0.7 到 0.9 的答案里，<b>答对的比例</b></div>
+  <div class="bars">
+    <span></span><div class="bandlab"><span>字面上该落在这里</span></div><span></span>
+    <span class="lab">新闻主题</span><div class="track band"><i class="jev" style="width:85.2%"></i></div><span class="val">85.2%</span>
+    <span class="lab">六类情绪</span><div class="track band"><i class="jev" style="width:49.4%"></i></div><span class="val">49.4%</span>
+  </div>
+</div>
+<div class="tiny muted mt">数据：越狱基准见第 9 章，classifier.dev 的校准表见第 10 章</div>
+</body></html>

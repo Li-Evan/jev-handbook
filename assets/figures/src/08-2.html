@@ -1,0 +1,28 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .bars { grid-template-columns: 132px 1fr 90px; gap: 8px 16px; }
+  .bucket { grid-column: 1 / -1; font-weight: 700; margin-top: 18px; }
+  .bucket:first-child { margin-top: 0; }
+  .track i.mid { background: #8a8374; }
+  .bars .lab.b { font-weight: 700; }
+</style></head><body>
+<div class="bars">
+  <div class="bucket">SciFact</div>
+  <span class="lab small">只用 BM25</span><div class="track"><i style="width:66.7%"></i></div><span class="val">0.667</span>
+  <span class="lab small">Cohere</span><div class="track"><i class="mid" style="width:74.5%"></i></div><span class="val">0.745</span>
+  <span class="lab small">Voyage</span><div class="track"><i class="ink" style="width:75.5%"></i></div><span class="val">0.755</span>
+  <span class="lab small">Opus 5</span><div class="track"><i class="llm" style="width:75.6%"></i></div><span class="val">0.756</span>
+  <span class="lab small b accent">Jev</span><div class="track"><i class="jev" style="width:76.8%"></i></div><span class="val accent">0.768</span>
+  <div class="bucket">NFCorpus</div>
+  <span class="lab small">只用 BM25</span><div class="track"><i style="width:31%"></i></div><span class="val">0.310</span>
+  <span class="lab small">Cohere</span><div class="track"><i class="mid" style="width:33.9%"></i></div><span class="val">0.339</span>
+  <span class="lab small">Voyage</span><div class="track"><i class="ink" style="width:35.7%"></i></div><span class="val">0.357</span>
+  <span class="lab small b accent">Jev</span><div class="track"><i class="jev" style="width:35.8%"></i></div><span class="val accent">0.358</span>
+  <div class="bucket">FiQA</div>
+  <span class="lab small">只用 BM25</span><div class="track"><i style="width:23.4%"></i></div><span class="val">0.234</span>
+  <span class="lab small">Cohere</span><div class="track"><i class="mid" style="width:37.4%"></i></div><span class="val">0.374</span>
+  <span class="lab small">Voyage</span><div class="track"><i class="ink" style="width:40.2%"></i></div><span class="val">0.402</span>
+  <span class="lab small b accent">Jev</span><div class="track"><i class="jev" style="width:37.6%"></i></div><span class="val accent">0.376</span>
+</div>
+<div class="tiny muted mt">指标是 nDCG@10，1 是满分。Cohere 是 rerank-v3.5，Voyage 是 rerank-3<br>Opus 5 是 Claude Opus 5 低思考强度整表排序，只测了 SciFact<br>数据：hev reranker 作者在 RESULTS.md 里报告</div>
+</body></html>

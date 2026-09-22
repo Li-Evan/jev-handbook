@@ -47,6 +47,12 @@ def main():
     shutil.copy(ROOT / "tools" / "book.css", site / "book.css")
     shutil.copy(ROOT / "tools" / "web.css", site / "web.css")
     shutil.copy(ROOT / "assets" / "cover.png", site / "cover.png")
+    for name in ("figures", "shots"):
+        out = site / "assets" / name
+        out.mkdir(parents=True, exist_ok=True)
+        for image in (ROOT / "assets" / name).glob("*.*"):
+            if image.suffix in (".png", ".jpg"):
+                shutil.copy(image, out / image.name)
     run([*common[:-2], "--to", "html5", "--standalone", "--css", "book.css", "--css", "web.css", "--template", "tools/web.html",
          "--metadata", "pagetitle=Jev 实战手册", "--output", str(site / "index.html")])
 

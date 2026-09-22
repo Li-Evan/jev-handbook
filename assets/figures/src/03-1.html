@@ -1,0 +1,45 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .where { display: flex; align-items: center; gap: 12px; font-size: 22px; color: var(--muted); font-weight: 600; margin: 4px 0 10px 66px; }
+  .where + .step, .step + .step { margin-top: 0; }
+  .step { display: grid; grid-template-columns: 48px 1fr; gap: 18px; align-items: stretch; }
+  .rail { display: flex; flex-direction: column; align-items: center; }
+  .dot { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+         font: 700 24px/1 "JetBrains Mono", Menlo, monospace; color: #fff; flex: none; margin-top: 12px; }
+  .dot.human { background: var(--human); }
+  .dot.code { background: var(--code); }
+  .line { flex: 1; width: 3px; background: var(--rule); margin: 6px 0 -6px; }
+  .step:last-child .line { display: none; }
+  .box { margin-bottom: 14px; }
+  .box .t { display: flex; align-items: center; gap: 12px; }
+  .box .d { font-size: 22px; }
+  .gap { height: 12px; }
+</style></head><body>
+<div class="where">在浏览器里</div>
+<div class="step">
+  <div class="rail"><div class="dot human">1</div><div class="line"></div></div>
+  <div class="box human"><div class="t">控制台拿 key <span class="tag bad">只认 typesafe.ai</span></div>
+    <div class="d">在 console.typesafe.ai/keys 创建<br>放进环境变量 <span class="mono">TYPESAFE_API_KEY</span></div></div>
+</div>
+<div class="step">
+  <div class="rail"><div class="dot human">2</div><div class="line"></div></div>
+  <div class="box human"><div class="t">Playground 里试问题</div>
+    <div class="d">贴一段 state，加上问题，改一次看一次概率和置信度</div></div>
+</div>
+<div class="where">在终端和代码里</div>
+<div class="step">
+  <div class="rail"><div class="dot code">3</div><div class="line"></div></div>
+  <div class="box"><div class="t">cURL 看清字段</div>
+    <div class="d">请求 model、state、questions，响应 answers、usage</div></div>
+</div>
+<div class="step">
+  <div class="rail"><div class="dot code">4</div><div class="line"></div></div>
+  <div class="box"><div class="t">SDK 接进代码</div>
+    <div class="d">Python 装 <span class="mono">typesafe-sdk</span>，JS 装 <span class="mono">@typesafe-ai/sdk</span><br>key 只放在服务端</div></div>
+</div>
+<div class="step">
+  <div class="rail"><div class="dot code">5</div><div class="line"></div></div>
+  <div class="box code"><div class="t">固定版本，记进日志</div>
+    <div class="d">模型写死 <span class="mono">jev-1.13.0</span>，每次记下 model、request_id、usage</div></div>
+</div>
+</body></html>

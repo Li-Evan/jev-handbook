@@ -1,0 +1,42 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .panel { background: var(--card); border: 2px solid var(--rule); border-radius: 16px; padding: 18px 22px; }
+  .panel + .panel { margin-top: 18px; }
+  .ph { font-weight: 700; font-size: 26px; margin-bottom: 12px; }
+  .ph span { font-weight: 400; color: var(--muted); font-size: 22px; margin-left: 10px; }
+  .bars { grid-template-columns: 196px 1fr 96px; gap: 10px 16px; }
+  .lab { display: flex; align-items: baseline; gap: 8px; }
+  .lab.jevl { color: var(--jev); font-weight: 700; }
+</style></head><body>
+<div class="panel">
+  <div class="ph">AUC<span>把所有阈值压成一个数，1 是完美</span></div>
+  <div class="bars">
+    <span class="lab small">ProtectAI v2</span><div class="track"><i style="width:88.2%"></i></div><span class="val">0.882</span>
+    <span class="lab small">PIGuard</span><div class="track"><i style="width:86.6%"></i></div><span class="val">0.866</span>
+    <span class="lab small jevl">Jev</span><div class="track"><i class="jev" style="width:84.4%"></i></div><span class="val accent">0.844</span>
+    <span class="lab small">Prompt Guard 2</span><div class="track"><i style="width:65%"></i></div><span class="val">0.650</span>
+    <span class="lab small">deepset</span><div class="track"><i style="width:49.4%"></i></div><span class="val">0.494</span>
+  </div>
+</div>
+<div class="panel">
+  <div class="ph">误报放宽到 5%<span>抓到的攻击比例</span></div>
+  <div class="bars">
+    <span class="lab small">ProtectAI v2</span><div class="track"><i style="width:58.8%"></i></div><span class="val">58.8%</span>
+    <span class="lab small">PIGuard</span><div class="track"><i style="width:51.7%"></i></div><span class="val">51.7%</span>
+    <span class="lab small jevl">Jev</span><div class="track"><i class="jev" style="width:19.9%"></i></div><span class="val accent">19.9%</span>
+    <span class="lab small">Prompt Guard 2</span><div class="track"><i style="width:11.8%"></i></div><span class="val">11.8%</span>
+    <span class="lab small">deepset</span><div class="track"><i style="width:4%"></i></div><span class="val">4.0%</span>
+  </div>
+</div>
+<div class="panel">
+  <div class="ph">误报压到 1%<span>抓到的攻击比例</span></div>
+  <div class="bars">
+    <span class="lab small">ProtectAI v2</span><div class="track"><i style="width:31.7%"></i></div><span class="val">31.7%</span>
+    <span class="lab small">PIGuard</span><div class="track"><i style="width:27.3%"></i></div><span class="val">27.3%</span>
+    <span class="lab small jevl">Jev</span><div class="track"><i class="jev" style="width:0%"></i></div><span class="val accent">0.0%</span>
+    <span class="lab small">Prompt Guard 2</span><div class="track"><i style="width:3.6%"></i></div><span class="val">3.6%</span>
+    <span class="lab small">deepset</span><div class="track"><i style="width:0.8%"></i></div><span class="val">0.8%</span>
+  </div>
+</div>
+<div class="tiny muted mt">数据：Mike Ramos 的越狱基准，真人攻击那一组，共 6,115 条</div>
+</body></html>

@@ -1,0 +1,23 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .lvl { height: 64px; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 12px; color: #fff; font-size: 22px; font-weight: 600; }
+  .lvl .num { font-size: 28px; }
+  .l0 { background: var(--gray); color: var(--ink); }
+  .l1 { background: var(--code); }
+  .l2 { background: var(--jev); }
+  .l3 { background: var(--llm); }
+  .step { display: flex; align-items: center; gap: 12px; font-size: 22px; }
+  .step .muted { font-size: 20px; }
+</style></head><body>
+<div class="funnel">
+  <div class="lvl l0" style="width:100%">566 个页面两两配对 <span class="num">319,790</span> 对</div>
+  <div class="step"><span class="tag">CODE</span>TF-IDF 检索，每页只留 15 个候选<span class="muted">约为 1/38</span></div>
+  <div class="lvl l1" style="width:71.3%"><span class="num">8,460</span> 对</div>
+  <div class="step"><span class="tag jev">JEV</span>判断该不该链、挑锚文本<span class="muted">5.95 秒，0.27 美元</span></div>
+  <div class="lvl l2" style="width:51.4%"><span class="num">679</span> 条链接</div>
+  <div class="step"><span class="tag llm">LLM</span>Claude Opus 5 逐条审，只留或删<span class="muted">2.07 美元</span></div>
+  <div class="lvl l3" style="width:44.6%"><span class="num">287</span> 条</div>
+</div>
+<div class="tiny muted mt">条宽按对数刻度。数据：jev-linkmap 仓库附带的 566 页实跑</div>
+</body></html>

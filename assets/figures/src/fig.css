@@ -1,0 +1,76 @@
+/* Shared style for the book's figures. Each figure is one HTML file rendered by tools/figures.py.
+   Designed at 800 CSS px wide so labels stay readable when a phone scales the image down. */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap");
+
+:root {
+  --paper: #f7f4ec; --card: #fffdf8; --ink: #1b1915; --muted: #6d665a; --rule: #ddd4c2;
+  --jev: #ff5a1f; --jev-soft: #ffe3d6; --code: #1b1915; --llm: #3d5a80; --llm-soft: #dde6f0;
+  --human: #4f7a3a; --human-soft: #e2edd9; --bad: #b3261e; --bad-soft: #f6dcd9; --gray: #b9b1a1;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width: 800px; background: var(--paper); color: var(--ink); font: 400 26px/1.4 "PingFang SC", "Hiragino Sans GB", sans-serif; padding: 36px; }
+.mono, .num { font-family: "JetBrains Mono", Menlo, monospace; }
+.num { font-weight: 700; }
+.muted { color: var(--muted); }
+.small { font-size: 22px; }
+.tiny { font-size: 20px; }
+.b { font-weight: 600; }
+.accent { color: var(--jev); }
+.center { text-align: center; }
+
+/* layout */
+.row { display: flex; gap: 18px; align-items: stretch; }
+.col { display: flex; flex-direction: column; gap: 14px; }
+.grow { flex: 1; }
+.mid { align-items: center; }
+.gap-s { gap: 10px; }
+.gap-l { gap: 28px; }
+.mt { margin-top: 22px; }
+.mt-s { margin-top: 12px; }
+
+/* boxes: who does the work */
+.box { background: var(--card); border: 2px solid var(--rule); border-radius: 14px; padding: 14px 18px; }
+.box.jev { border-color: var(--jev); background: var(--jev-soft); }
+.box.code { border-color: var(--code); background: var(--code); color: #f1ece1; }
+.box.llm { border-color: var(--llm); background: var(--llm-soft); }
+.box.human { border-color: var(--human); background: var(--human-soft); }
+.box.bad { border-color: var(--bad); background: var(--bad-soft); }
+.box.dashed { border-style: dashed; background: transparent; }
+.box .t { font-weight: 600; }
+.box .d { font-size: 22px; color: var(--muted); margin-top: 4px; }
+.box.code .d { color: #b8b0a0; }
+.tag { display: inline-block; font: 700 18px/1 "JetBrains Mono", Menlo, monospace; letter-spacing: .06em; padding: 5px 9px; border-radius: 6px; background: var(--ink); color: #f1ece1; }
+.tag.jev { background: var(--jev); color: #fff; }
+.tag.llm { background: var(--llm); color: #fff; }
+.tag.human { background: var(--human); color: #fff; }
+.tag.bad { background: var(--bad); color: #fff; }
+.tag.gray { background: var(--gray); color: var(--ink); }
+
+/* arrows */
+.arrow { align-self: center; color: var(--muted); font: 700 34px/1 "JetBrains Mono", Menlo, monospace; }
+.arrow.down { align-self: center; }
+.arrow.down::before { content: "↓"; }
+.arrow.right::before { content: "→"; }
+
+/* horizontal bars: .bars > .bar-row > label / track / value */
+.bars { display: grid; grid-template-columns: auto 1fr auto; gap: 14px 16px; align-items: center; }
+.bars .lab { white-space: nowrap; }
+.track { height: 30px; background: #ebe5d7; border-radius: 6px; overflow: hidden; }
+.track i { display: block; height: 100%; background: var(--gray); border-radius: 6px 0 0 6px; }
+.track i.jev { background: var(--jev); }
+.track i.ink { background: var(--ink); }
+.track i.llm { background: var(--llm); }
+.track i.human { background: var(--human); }
+.bars .val { font: 700 24px/1 "JetBrains Mono", Menlo, monospace; text-align: right; min-width: 90px; }
+.group-title { grid-column: 1 / -1; font-weight: 600; margin-top: 10px; }
+.legend { display: flex; gap: 26px; font-size: 22px; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 18px; height: 18px; border-radius: 4px; margin-right: 8px; vertical-align: -2px; background: var(--c, var(--gray)); }
+
+/* probability scale 0..1 with bands */
+.scale { position: relative; height: 54px; border-radius: 10px; overflow: hidden; display: flex; }
+.scale > div { display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 600; }
+.ticks { display: flex; justify-content: space-between; font: 500 20px/1 "JetBrains Mono", Menlo, monospace; color: var(--muted); margin-top: 6px; position: relative; height: 22px; }
+.ticks span { position: absolute; transform: translateX(-50%); }
+
+.card-title { font-weight: 700; font-size: 28px; }
+.rule { border-top: 2px solid var(--rule); }

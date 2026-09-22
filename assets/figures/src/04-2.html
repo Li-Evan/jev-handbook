@@ -1,0 +1,45 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 176px; column-gap: 22px; }
+  .main { grid-column: 1; }
+  .span { grid-column: 1 / -1; }
+  .arrow.down { margin: 6px 0; justify-self: center; }
+  .latin { font-family: "Helvetica Neue", Helvetica, "PingFang SC", sans-serif; }
+  .box .d { font-size: 22px; }
+  .qs { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin-top: 8px; font-size: 22px; }
+  .qs b { font-weight: 600; }
+  .qs span { color: var(--muted); }
+  .out { display: grid; grid-template-columns: 1fr 96px 1fr; gap: 14px; align-items: stretch; }
+  .out .box { padding: 10px 14px; }
+  .go { display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 600; color: var(--jev); font-size: 22px; }
+  .go .arrow { margin-top: 2px; }
+  .bypass { grid-column: 2; grid-row: 2 / 7; position: relative; display: flex; justify-content: center; }
+  .bypass .ln { position: absolute; top: 0; bottom: 0; left: 50%; border-left: 3px dashed var(--muted); }
+  .bypass .lab { position: relative; align-self: center; background: var(--paper); padding: 10px 0; text-align: center; font-size: 22px; font-weight: 600; color: var(--muted); line-height: 1.35; }
+  .bypass .tip { position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); font: 700 30px/1 "JetBrains Mono", Menlo, monospace; color: var(--muted); }
+  .ex { background: #ebe5d7; border-color: var(--gray); text-align: center; }
+  .note { display: flex; flex-direction: column; gap: 4px; }
+</style></head><body>
+<div class="grid">
+  <div class="box main" style="grid-row:1"><div class="t">策略提出开仓或加仓</div><div class="d">带上它的理由</div></div>
+  <div class="box dashed" style="grid-column:2; grid-row:1"><div class="t">平仓、止损</div><div class="d">直接去下单</div></div>
+  <div class="bypass"><div class="ln"></div><div class="lab">不经过<br>Jev</div><div class="tip">↓</div></div>
+
+  <div class="arrow down main" style="grid-row:2"></div>
+  <div class="box code main" style="grid-row:3"><div class="t">代码把行情整理成 state</div><div class="d">数字先换成档位词，新闻按品种筛</div></div>
+  <div class="arrow down main" style="grid-row:4"></div>
+  <div class="box jev main" style="grid-row:5"><div class="t">Jev 只答判断题</div>
+    <div class="qs"><b>Choice</b><span>放行 / 等下一根 K 线 / 拒绝</span><b>Noul</b><span>有没有新闻和开仓理由矛盾</span><b>Score</b><span>这笔单新增的风险在哪一档</span></div></div>
+  <div class="main" style="grid-row:6; margin-top:14px">
+    <div class="out">
+      <div class="box bad"><div class="t">这单不下</div><div class="d">拒绝、等待<br>新闻冲突<br>或把握太低</div></div>
+      <div class="go">放行<span class="arrow down"></span></div>
+      <div class="box human"><div class="t">交给人</div><div class="d">把握中等<br>或风险偏高</div></div>
+    </div>
+  </div>
+  <div class="box code span" style="grid-row:7; margin-top:14px"><div class="t">代码下单</div><div class="d">价格、数量、仓位上限、撤单，全按风控规则算</div></div>
+  <div class="arrow down span" style="grid-row:8"></div>
+  <div class="box ex span" style="grid-row:9"><div class="t">交易所</div></div>
+</div>
+<div class="box dashed note mt"><div class="t">Jev 出错或超时往哪边退，写代码时就定好</div><div class="d latin">QuantDinger 照常放行，jev-trader 迟到就不下单</div></div>
+</body></html>

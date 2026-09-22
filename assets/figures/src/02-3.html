@@ -1,0 +1,53 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .panel { background: var(--card); border: 2px solid var(--rule); border-radius: 16px; padding: 18px 22px 16px; }
+  .panel + .panel { margin-top: 18px; }
+  .ph { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+  .ph span { color: var(--muted); font-size: 22px; }
+  .item + .item { margin-top: 22px; }
+  .name { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; font-weight: 600; }
+  .name span { font-weight: 400; font-size: 22px; color: var(--muted); }
+  .scale { gap: 3px; background: var(--card); }
+  .scale > div { border-radius: 8px; white-space: nowrap; }
+  .auto { background: var(--jev); color: #fff; }
+  .auto-soft { background: var(--jev-soft); color: var(--jev); border: 2px solid var(--jev); }
+  .confirm { background: var(--human-soft); color: var(--human); border: 2px solid var(--human); }
+  .person { background: var(--human); color: #fff; }
+  .ticks span:first-child { transform: none; }
+  .ticks span:last-child { transform: translateX(-100%); }
+</style></head><body>
+<div class="panel">
+  <div class="ph"><div class="card-title">语音银行</div><span>一个 Choice 判断用户要办什么，看置信度</span></div>
+  <div class="item">
+    <div class="name">查余额<span>判错了最坏多听一遍余额</span></div>
+    <div class="scale">
+      <div class="person" style="width:60%">转人工</div>
+      <div class="auto" style="width:40%">自动执行</div>
+    </div>
+    <div class="ticks"><span style="left:0">0</span><span style="left:60%">0.6</span><span style="left:100%">1</span></div>
+  </div>
+  <div class="item">
+    <div class="name">批准转账<span>中间一段先问一句确认</span></div>
+    <div class="scale">
+      <div class="person" style="width:60%">转人工</div>
+      <div class="confirm" style="width:25%">让用户确认</div>
+      <div class="auto" style="width:15%">自动执行</div>
+    </div>
+    <div class="ticks"><span style="left:0">0</span><span style="left:60%">0.6</span><span style="left:85%">0.85</span><span style="left:100%">1</span></div>
+  </div>
+</div>
+<div class="panel">
+  <div class="ph"><div class="card-title">Noul 的不确定区间</div><span>不在 0.5 一刀切</span></div>
+  <div class="item">
+    <div class="scale">
+      <div class="auto-soft" style="width:20%">算否</div>
+      <div class="person" style="width:60%">交给人看</div>
+      <div class="auto" style="width:20%">算是</div>
+    </div>
+    <div class="ticks"><span style="left:0">0</span><span style="left:20%">0.2</span><span style="left:80%">0.8</span><span style="left:100%">1</span></div>
+  </div>
+  <div class="small muted mt">误判成是代价大就提高上沿，漏掉一个是代价大就降低下沿</div>
+</div>
+<div class="legend mt"><span style="--c: var(--jev)">代码按 Jev 的答案自动处理</span><span style="--c: var(--human)">交给人</span></div>
+<div class="tiny muted mt-s">数字来自官方文档的例子</div>
+</body></html>

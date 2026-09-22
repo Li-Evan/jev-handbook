@@ -1,0 +1,42 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><link rel="stylesheet" href="fig.css">
+<style>
+  .key { display: grid; grid-template-columns: auto auto 1fr; gap: 8px 12px; align-items: center; font-size: 22px; }
+  .key i { width: 20px; height: 20px; border-radius: 4px; background: var(--c); }
+  .key b { font-weight: 600; white-space: nowrap; }
+  .key span { color: var(--muted); }
+  .latin { font-family: "Helvetica Neue", Helvetica, "PingFang SC", sans-serif; }
+  .bars { grid-template-columns: 140px 1fr 150px; gap: 8px 16px; }
+  .bars .lab { font-size: 22px; }
+  .bars .val { min-width: 0; }
+  .bars .val small { font: 400 20px/1 "PingFang SC", sans-serif; margin-left: 4px; }
+  .bucket { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; margin-top: 18px; }
+  .bucket span + span { font-weight: 400; font-size: 22px; color: var(--muted); }
+</style></head><body>
+<div class="key">
+  <i style="--c: var(--gray)"></i><b>摘要</b><span>大模型把旧对话改写成摘要</span>
+  <i style="--c: var(--ink)"></i><b>摘要 + 回查</b><span>再用一次 session_search 回查，Hermes 线上方案</span>
+  <i style="--c: var(--jev)"></i><b>Jev 方案</b><span class="latin">fast-jev-compaction 默认参数</span>
+</div>
+<div class="bars mt">
+  <div class="bucket"><span>回忆正确率</span><span>越高越好</span></div>
+  <span class="lab">摘要</span><div class="track"><i style="width:43.3%"></i></div><span class="val">43.3%</span>
+  <span class="lab">摘要 + 回查</span><div class="track"><i class="ink" style="width:78.9%"></i></div><span class="val">78.9%</span>
+  <span class="lab">Jev 方案</span><div class="track"><i class="jev" style="width:75.5%"></i></div><span class="val accent">75.5%</span>
+
+  <div class="bucket"><span>压缩后保留</span><span>之后每一轮都要重新计费</span></div>
+  <span class="lab">摘要</span><div class="track"><i style="width:47.83%"></i></div><span class="val">55k<small>token</small></span>
+  <span class="lab">摘要 + 回查</span><div class="track"><i class="ink" style="width:47.83%"></i></div><span class="val">55k<small>token</small></span>
+  <span class="lab">Jev 方案</span><div class="track"><i class="jev" style="width:100%"></i></div><span class="val accent">115k<small>token</small></span>
+
+  <div class="bucket"><span>每次压缩花费</span></div>
+  <span class="lab">摘要</span><div class="track"><i style="width:100%"></i></div><span class="val">0.061<small>美元</small></span>
+  <span class="lab">摘要 + 回查</span><div class="track"><i class="ink" style="width:100%"></i></div><span class="val">0.061<small>美元</small></span>
+  <span class="lab">Jev 方案</span><div class="track"><i class="jev" style="width:11.48%"></i></div><span class="val accent">0.007<small>美元</small></span>
+
+  <div class="bucket"><span>每次压缩耗时</span></div>
+  <span class="lab">摘要</span><div class="track"><i style="width:100%"></i></div><span class="val">36.9<small>秒</small></span>
+  <span class="lab">摘要 + 回查</span><div class="track"><i class="ink" style="width:100%"></i></div><span class="val">36.9<small>秒</small></span>
+  <span class="lab">Jev 方案</span><div class="track"><i class="jev" style="width:3.79%"></i></div><span class="val accent">1.4<small>秒</small></span>
+</div>
+<div class="tiny muted mt">数据：Hermes agent 仓库的压缩评分卡，三段 50 万 token 的真实会话</div>
+</body></html>

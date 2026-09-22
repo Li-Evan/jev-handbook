@@ -63,6 +63,8 @@ uv run tools/build.py
 
 正文在 `book/` 目录，一章一个 Markdown 文件，按文件名前的数字排序。
 
+书里的配图都是自己画的：源文件是 `assets/figures/src/` 下的 HTML，用 `uv run tools/figures.py` 调本机的 Chrome 渲染成 PNG，改完图要重新渲染再构建。
+
 ## 参与
 
 发现事实错误、链接失效，或者想推荐一个值得写进书里的案例，欢迎提 issue。
@@ -71,4 +73,4 @@ uv run tools/build.py
 
 本书由社区作者编写，与 TypeSafe 官方无关。Jev 的价格、限额和能力以 [官方文档](https://docs.typesafe.ai) 为准。
 
-书稿以 [CC BY-NC-SA 4.0](LICENSE) 许可发布：可以自由转载和改编，但需要署名、不能用于商业用途，改编后的作品也要用同样的许可发布。
+书稿以 [CC BY-NC-SA 4.0](LICENSE) 许可发布：可以自由转载和改编，但需要署名、不能用于商业用途，改编后的作品也要用同样的许可发布。书中的案例截图和视频画面来自各案例的作者，版权归原作者所有，不在这个许可范围内，图注里注明了出处。
