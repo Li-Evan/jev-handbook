@@ -8,12 +8,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: book-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   build:
@@ -35,19 +29,9 @@ jobs:
           printf '#!/bin/sh\nexec java -jar %s/epubcheck-5.4.0/epubcheck.jar "$@"\n' "$PWD" > "$HOME/bin/epubcheck"
           chmod +x "$HOME/bin/epubcheck"
           echo "$HOME/bin" >> "$GITHUB_PATH"
-      - name: Build EPUB and web edition
+      - name: Build and validate the EPUB
         run: uv run tools/build.py
-      - uses: actions/upload-pages-artifact@v5
+      - uses: actions/upload-artifact@v7
         with:
-          path: dist/site
-
-  deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v5
+          name: jev-handbook
+          path: dist/jev-handbook.epub
