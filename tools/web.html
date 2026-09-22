@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$title$ · $subtitle$</title>
+<meta name="description" content="$description$">
+<meta property="og:type" content="book">
+<meta property="og:title" content="$title$ · $subtitle$">
+<meta property="og:description" content="$description$">
+<meta property="og:image" content="cover.png">
+$for(css)$
+<link rel="stylesheet" href="$css$">
+$endfor$
+</head>
+<body>
+<header class="top">
+  <img class="cover" src="cover.png" alt="$title$ 封面">
+  <div>
+    <h1 class="book-title">$title$</h1>
+    <p class="book-sub">$subtitle$ · $for(author)$$author$$endfor$</p>
+    <p class="book-desc">$description$</p>
+    <p class="dl"><a class="btn" href="jev-handbook.epub" download>下载 EPUB（可导入微信读书）</a> <a class="btn ghost" href="https://github.com/Li-Evan/jev-handbook">GitHub</a></p>
+  </div>
+</header>
+<div class="layout">
+  <nav class="toc" aria-label="目录"><p class="toc-title">目录</p>$table-of-contents$</nav>
+  <main>$body$</main>
+</div>
+<footer>$rights$。内容持续更新，欢迎在 GitHub 提 issue 纠错。</footer>
+</body>
+</html>

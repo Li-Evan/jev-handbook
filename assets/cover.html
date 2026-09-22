@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<!-- Source for assets/cover.png (1600x2560). Render with:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --virtual-time-budget=6000 --window-size=1600,2560 --screenshot=assets/cover.png assets/cover.html -->
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { width: 1600px; height: 2560px; overflow: hidden; background: #121110; color: #f1ece1; position: relative; font-family: "PingFang SC", sans-serif; }
+  .glow { position: absolute; right: -380px; top: -300px; width: 1300px; height: 1300px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 90, 31, .5), transparent 66%); }
+  .inner { position: absolute; inset: 150px 140px; display: flex; flex-direction: column; }
+  .kicker { font: 600 42px/1 "JetBrains Mono", monospace; letter-spacing: .18em; color: #ff5a1f; }
+  h1 { margin-top: 70px; font: 900 250px/1.02 "Songti SC", "STSong", serif; letter-spacing: -.02em; }
+  h1 .latin { font-family: "Georgia", serif; font-style: italic; font-weight: 400; }
+  .sub { margin-top: 60px; font: 500 72px/1.3 "Songti SC", "STSong", serif; color: #d8d0c0; }
+  .q { margin-top: auto; font: 500 40px/1.4 "JetBrains Mono", monospace; color: #9d9585; }
+  .opts { margin-top: 36px; display: grid; gap: 26px; }
+  .opt { display: grid; grid-template-columns: 470px 1fr 150px; white-space: nowrap; align-items: center; gap: 30px; font: 600 46px/1 "JetBrains Mono", monospace; }
+  .bar { height: 46px; border-radius: 8px; background: #2a2723; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: #f1ece1; }
+  .opt.win .bar i { background: #ff5a1f; }
+  .opt.win { color: #ff5a1f; }
+  .opt .p { text-align: right; }
+  .author { margin-top: 140px; display: flex; justify-content: space-between; align-items: baseline; font: 500 52px/1 "PingFang SC", sans-serif; color: #d8d0c0; }
+  .author .note { font: 500 34px/1 "JetBrains Mono", monospace; color: #7d766a; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="inner">
+    <div class="kicker">SYSTEM ONE · TYPED DECISIONS</div>
+    <h1><span class="latin">Jev</span><br>实战手册</h1>
+    <div class="sub">让 AI 只做判断题</div>
+    <div class="q">choice("这本书适合谁？")</div>
+    <div class="opts">
+      <div class="opt win"><span>想用 AI 做事的人</span><div class="bar"><i style="width:81%"></i></div><span class="p">0.81</span></div>
+      <div class="opt"><span>只想聊天的人</span><div class="bar"><i style="width:12%"></i></div><span class="p">0.12</span></div>
+      <div class="opt"><span>other</span><div class="bar"><i style="width:7%"></i></div><span class="p">0.07</span></div>
+    </div>
+    <div class="author"><span>Evan 著</span><span class="note">社区真实用例精选</span></div>
+  </div>
+</body>
+</html>
