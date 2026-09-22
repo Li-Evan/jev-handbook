@@ -14,3 +14,4 @@ a { color: #b83a0b; }
 .case { border: 1px solid #e3dccb; border-radius: 8px; padding: .4em 1em; margin: 1em 0; }
 h1.part { text-align: center; margin: 30% 0 .6em; font-size: 1.8em; }
 h1.part + p { text-align: center; color: #6d665a; }
+a.uri, td, th { overflow-wrap: anywhere; }
