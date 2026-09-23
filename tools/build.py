@@ -61,15 +61,13 @@ def main():
 
     pdf = DIST / f"{NAME}.pdf"
     printable = DIST / "print.html"
-    run([*common[:-2], "--to", "html5", "--standalone", "--toc-depth=1", "--template", "tools/print.html",
-         "--css", "tools/print.css", "--metadata", "pagetitle=Jev 实战手册", "--output", str(printable)])
     env = dict(os.environ)
     if sys.platform == "darwin":
         env.setdefault("DYLD_FALLBACK_LIBRARY_PATH", "/opt/homebrew/lib")
-    print("$ weasyprint", printable.name, pdf.name)
-    subprocess.run([sys.executable, "-m", "weasyprint", "--base-url", str(ROOT), "--optimize-images", "--dpi", "200",
-                    "--jpeg-quality", "85", str(printable), str(pdf)],
-                   check=True, cwd=ROOT, env=env)
+    print("$ tools/pdf.py", pdf.name)
+    subprocess.run([sys.executable, "tools/pdf.py", str(pdf), str(printable), "--", *common[:-2], "--to", "html5",
+                    "--standalone", "--toc-depth=1", "--template", "tools/print.html", "--css", "tools/print.css",
+                    "--metadata", "pagetitle=Jev 实战手册"], check=True, cwd=ROOT, env=env)
 
     shutil.copy(epub, site / epub.name)
     shutil.copy(pdf, site / pdf.name)

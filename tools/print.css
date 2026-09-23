@@ -46,5 +46,5 @@ th, td { border: .5pt solid #ddd6c6; padding: 1mm 1.5mm; text-align: left; verti
 th { background: #f2eee4; }
 
 figure { margin: 4mm 0; break-inside: avoid; }
-figure img { display: block; max-width: 100%; max-height: 180mm; margin: 0 auto; }
+figure img { display: block; max-width: 100%; max-height: 105mm; margin: 0 auto; }
 figcaption { font-size: 8pt; line-height: 1.55; color: #6d665a; margin-top: 1.5mm; text-align: left; }
