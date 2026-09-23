@@ -10,6 +10,7 @@ Jev 是 TypeSafe 在 2026 年 9 月发布的 System One 模型：它不写文字
 
 - 在线阅读：<https://li-evan.github.io/jev-handbook/>
 - 下载 EPUB：<https://li-evan.github.io/jev-handbook/jev-handbook.epub>
+- 下载 PDF：<https://li-evan.github.io/jev-handbook/jev-handbook.pdf>
 - 全部案例的来源库：[awesome-jev](https://li-evan.github.io/awesome-jev/?lang=zh)
 
 ## 导入微信读书
@@ -59,7 +60,7 @@ brew install pandoc epubcheck
 uv run tools/build.py
 ```
 
-生成的文件在 `dist/` 目录：`jev-handbook.epub` 和在线阅读版 `site/index.html`。加上 `--pdf` 参数还会生成 PDF，需要本机装有 xelatex。
+生成的文件在 `dist/` 目录：`jev-handbook.epub`、`jev-handbook.pdf` 和在线阅读版 `site/index.html`。PDF 由 WeasyPrint 排版，需要本机装有 pango（`brew install pango`）和中文字体。
 
 正文在 `book/` 目录，一章一个 Markdown 文件，按文件名前的数字排序。
 

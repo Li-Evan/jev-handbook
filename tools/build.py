@@ -1,13 +1,16 @@
 # /// script
 # requires-python = ">=3.10"
+# dependencies = ["weasyprint"]
 # ///
-"""Build the book from book/*.md.
+"""Build the book from book/*.md: EPUB, web edition and PDF.
 
 Usage:
-  uv run tools/build.py            # EPUB + web edition, then epubcheck
-  uv run tools/build.py --pdf      # also a PDF (needs xelatex and a CJK font)
+  uv run tools/build.py
+
+Needs pandoc, pango (brew install pango) and a CJK font; epubcheck is optional.
 """
 
+import os
 import shutil
 import subprocess
 import sys
@@ -56,11 +59,20 @@ def main():
     run([*common[:-2], "--to", "html5", "--standalone", "--css", "book.css", "--css", "web.css", "--template", "tools/web.html",
          "--metadata", "pagetitle=Jev 实战手册", "--output", str(site / "index.html")])
 
-    if "--pdf" in sys.argv:
-        run([*common[:-2], "--pdf-engine=xelatex", "-V", "CJKmainfont=Songti SC", "-V", "mainfont=Songti SC",
-             "-V", "geometry:margin=2.2cm", "-V", "colorlinks=true", "--output", str(DIST / f"{NAME}.pdf")])
+    pdf = DIST / f"{NAME}.pdf"
+    printable = DIST / "print.html"
+    run([*common[:-2], "--to", "html5", "--standalone", "--toc-depth=1", "--template", "tools/print.html",
+         "--css", "tools/print.css", "--metadata", "pagetitle=Jev 实战手册", "--output", str(printable)])
+    env = dict(os.environ)
+    if sys.platform == "darwin":
+        env.setdefault("DYLD_FALLBACK_LIBRARY_PATH", "/opt/homebrew/lib")
+    print("$ weasyprint", printable.name, pdf.name)
+    subprocess.run([sys.executable, "-m", "weasyprint", "--base-url", str(ROOT), "--optimize-images", "--dpi", "200",
+                    "--jpeg-quality", "85", str(printable), str(pdf)],
+                   check=True, cwd=ROOT, env=env)
 
     shutil.copy(epub, site / epub.name)
+    shutil.copy(pdf, site / pdf.name)
     if shutil.which("epubcheck"):
         run(["epubcheck", str(epub)])
     else:
